@@ -1,0 +1,44 @@
+<% include partials/_header %>
+<% include partials/_nav %>
+
+<div class="container">
+
+  <h2>Branch Geo Profile</h2>
+
+  <form action="/geoProfile" method="post">
+    <div class="form-group">
+      <label for="branchNumber">Branch Number</label>
+      <div class="col-sm-4">
+        <input type="number" class="form-control" name="branchNumber" placeholder="Number" required autofocus="required"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="city">City</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" name="city" placeholder="City">
+      </div>
+    </div>
+ 
+    <div class="form-group">
+      <label for="lat">Geo Location Lat</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" name="lat" aria-describedby="userHelp" placeholder="Branch Geo Lat (decimal degrees)">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="lng">Geo Location Lon</label>
+      <div class="col-sm-5">
+        <input type="text" class="form-control" name="lng" aria-describedby="userHelp" placeholder="Branch Geo Lng (decimal degrees)">
+      </div>
+    </div>
+
+
+
+    <button type="submit" value="geoProfile " class="btn btn-primary">Add Profile</button>
+
+  </form>
+</div>
+
+<% include partials/_footer %>

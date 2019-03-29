@@ -1,0 +1,100 @@
+<% include partials/_header %>
+<% include partials/_nav %>
+
+<link rel="stylesheet" href="/stylesheets/leaflet.css" />
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+<script src="/javascripts/leaflet-src.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<br>
+<div class="container">
+<br>
+  <h2>
+    <%= title %>
+  </h2>
+
+  <style>
+    #branches {
+      position: center-align;
+      height: 700px;
+    }
+  </style>
+
+<br>
+<!--  This is the target element -->
+  <div id="branches"></div>
+
+  <script>
+    // jQuery methods
+    // $(document).ready(function () {
+    // $(function () {
+
+    // html method  
+    document.addEventListener("DOMContentLoaded", function () {
+
+// This creates the base map
+      var branchmap = L.map('branches').setView([39.7507834, -104.9986242], 11);
+
+      L.marker([39.7507834, -104.9986242]).addTo(branchmap)
+        .bindPopup('This is Denver.')
+        .openPopup();
+
+      var circle = L.circle([39.7507834, -104.9986242], {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5,
+        radius: 100
+      }).addTo(branchmap);
+
+      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(branchmap);
+
+// This adds the branch locations to the map
+      function addBranches() {
+
+        axios.get('/branch-locations')
+          .then(function (branches) {
+            console.log(`Locations returned by axios ${branches.data}`);
+
+            branches.data.forEach(function (branch) {
+              ( i = 0, i <= branches.data.length, i++)
+              console.log(branch);
+              var popupContent = (branch.branchNumber.toString());
+              console.log(popupContent);
+              L.marker([branch.location.coordinates[1], branch.location.coordinates[0]]).addTo(branchmap)
+
+              .bindPopup(popupContent)
+              // .openPopup();
+            })
+          })
+
+          .catch(function (error) {
+            console.log(error);
+            console.log("Could not get branch details")
+          });
+      };
+      
+      // jQuery method
+      // function addBranches() {
+      //   $.getJSON('http://192.168.0.101:3300/branch-locations')  // Do NOT hard code URL
+      //     .done(function (locations) {
+
+      //       locations.forEach(function (location) {
+      //         (i = 0, i <= locations.length, i++)
+      //         console.log(location);
+      //         L.marker([location.lat, location.lng]).addTo(branchmap)
+      //         // .bindPopup(location)
+      //         // .openPopup();
+      //       })
+      //     })
+      //     .fail(console.log("Could not get branch details"))
+      // }
+
+      addBranches();
+    })
+  </script>
+</div>
+<!-- </body> -->
+<!-- </html> -->
+
+<!-- <% include partials/_footer %> -->

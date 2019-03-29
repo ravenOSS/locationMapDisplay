@@ -1,0 +1,18 @@
+body {
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+body{
+  background-color: #f39c12;
+}
+
+.page-item.active .page-link{
+  background-color: #f31212
+}
+.btn.btn-primary{
+   background-color: #f31212
+ }
+
+ .button{
+  background-color:#f31212
+}

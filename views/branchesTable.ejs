@@ -1,0 +1,39 @@
+<% include partials/_header.ejs %>
+<% include partials/_nav.ejs %>
+
+<div class="container">
+<h2><%= title %></h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Branch Number</th>
+      <th scope="col">City</th>
+      <th scope="col">Lng</th>
+      <th scope="col">Lat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% branches.forEach(function(branch) { %>
+    <tr>
+      <td>
+        <a href="/branches/<%= branch.branchNumber %>">
+          <%= branch.branchNumber %>
+        </a>
+      </td>
+      <td>
+      <%= branch.city %>
+      </td>
+      <td>
+      <%= branch.location.coordinates[0] %>
+      </td>
+      <td>
+        <%= branch.location.coordinates[1] %>
+      </td>
+      <% }) %>
+    </tr>
+  </tbody>
+</table>
+
+<% include partials/_footer %>
+</div>
