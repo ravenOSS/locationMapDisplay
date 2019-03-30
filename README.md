@@ -1,2 +1,2 @@
-# cftw-Location-Mapping
-DEBUG=bdobranchmapping:* npm start
+# locationMapDisplay
+DEBUG=locationmapdisplay:* npm start
