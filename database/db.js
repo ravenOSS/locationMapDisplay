@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
-var dotenv = require('dotenv');
-let dbURI = 'mongodb+srv://cftw_2018:QfpiTfhJ6NUlyo2h@bancodeloro-keebo.azure.mongodb.net/cftw_auth?retryWrites=true';
-
+let dbURI = process.env.DB_atlasURI_SRV;
 // if (process.env.NODE_ENV === 'production') {
 //   dbURI = process.env.MONGODB_URI;
 // }

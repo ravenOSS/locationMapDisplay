@@ -54,8 +54,6 @@
 
         axios.get('/branch-locations')
           .then(function (branches) {
-            console.log(`Locations returned by axios ${branches.data}`);
-
             branches.data.forEach(function (branch) {
               ( i = 0, i <= branches.data.length, i++)
               console.log(branch);
