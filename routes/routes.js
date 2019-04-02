@@ -55,6 +55,10 @@ router.get('/branch-map', function (req, res, next) {
   res.render('branch-map', { title: 'Branch Map' });
 });
 
+/* GET Locations Map. Display Mapbox with stored data */
+router.get('/mapbox', function (req, res, next) {
+  res.render('branch-Mapbox', { title: 'Mapbox Map' });
+});
 /* GET branch locations data. Source for populating /branch-map */
 router.get('/branch-locations', function (req, res, next) {
   GeoBranch.find()
