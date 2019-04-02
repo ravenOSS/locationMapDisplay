@@ -8,11 +8,12 @@ router.get('/', function (req, res, next) {
   res.render('frontpage', { title: 'Banco del Oro', strapline: 'Please register a branch' });
 });
 
-/* GET geoProfiler */
+/* GET geoProfiler - enter location data*/
 router.get('/geoProfile', function (req, res, next) {
   res.render('geoProfile');
 });
 
+/* POST location data */
 router.post('/geoProfile', function (req, res, next) {
   var branchNumber = req.body.branchNumber;
   var city = req.body.city;
@@ -38,7 +39,7 @@ router.post('/geoProfile', function (req, res, next) {
   res.redirect('geoProfile');
 });
 
-/* GET branches data. */
+/* GET branches data for tabulation. */
 router.get('/branches', function (req, res, next) {
   GeoBranch.find()
     .sort({ branchNumber: 'ascending' })
@@ -49,12 +50,12 @@ router.get('/branches', function (req, res, next) {
     });
 });
 
-/* GET Locations Map. */
+/* GET Locations Map. Display leaflet with stored data */
 router.get('/branch-map', function (req, res, next) {
   res.render('branch-map', { title: 'Branch Map' });
 });
 
-/* GET branch locations data. */
+/* GET branch locations data. Source for populating /branch-map */
 router.get('/branch-locations', function (req, res, next) {
   GeoBranch.find()
     .sort({ branchNumber: 'ascending' })
@@ -69,10 +70,16 @@ router.get('/branch-locations', function (req, res, next) {
     });
 });
 
-/* GET Locations Map. */
+/* GET Locations Map. Demo hardcoded leaflet locations */
 router.get('/leafletLocations', function (req, res, next) {
   res.render('leafletLocations');
 });
+
+router.get('/gmap', function (req, res, next) {
+  res.render('googleTest');
+});
+
+module.exports = router;
 
 // /* render branch profile page. */
 // router.get('/branch-details', function (req, res, next) {
@@ -153,4 +160,4 @@ router.get('/branch/:number', function (req, res, next) {
 });
 */
 
-module.exports = router;
+
