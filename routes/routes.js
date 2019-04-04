@@ -1,93 +1,42 @@
-var express = require('express');
+const express = require('express');
+const router = express.Router();
 
-var router = express.Router();
-var GeoBranch = require('../models/geoBranch');
+const ctrlr = require('./controllers');
+console.log(ctrlr.geoprofileCtrlr);
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('frontpage', { title: 'Banco del Oro', strapline: 'Please register a branch' });
-});
+router.get('/', ctrlr.homepageCtrlr);
 
-/* GET geoProfiler - enter location data*/
-router.get('/geoProfile', function (req, res, next) {
-  res.render('geoProfile');
-});
+// const homepageCtrlr = (req, res) => {
+//   res.render('frontpage', { title: 'Banco del Oro', strapline: 'Please register a branch' });
+// };
 
-/* POST location data */
-router.post('/geoProfile', function (req, res, next) {
-  var branchNumber = req.body.branchNumber;
-  var city = req.body.city;
-  var lat = parseFloat(req.body.lat);
-  var lng = parseFloat(req.body.lng);
+// /* GET home page. */
+// router.get('/', homepageCtrlr);
 
-  GeoBranch.findOne({ branchNumber: branchNumber }, function (err, branch) {
-    if (err) { return next(err); }
-    if (branch) {
-      console.log(`Branch ${branchNumber} already registered`);
-      //      req.flash('error', 'Branch already exists');
-      return res.redirect('/geoProfile');
-    }
+// /* GET geoProfiler - enter location data */
+// router.get('/geoProfile', ctrlr.geoprofileCtrlr);
 
-    var newBranch = new GeoBranch({
-      branchNumber: branchNumber,
-      city: city,
-      location:
-      { type: 'Point', coordinates: [lng, lat] }
-    });
-    newBranch.save();
-  });
-  res.redirect('geoProfile');
-});
+// /* POST location data */
+// router.post('/geoProfile', ctrlr.geopostCtrlr);
 
-/* GET branches data for tabulation. */
-router.get('/branches', function (req, res, next) {
-  GeoBranch.find()
-    .sort({ branchNumber: 'ascending' })
-    .exec(function (err, branches) {
-      if (err) { return next(err); }
-      console.log(branches);
-      res.render('branchesTable', { title: 'Our Branches', branches: branches });
-    });
-});
+// /* GET Locations Map. Display hardcoded leaflet locations */
+// router.get('/leafletLocations', ctrlr.leafletmapCtrlr);
 
-/* GET Locations Map. Display leaflet with stored data */
-router.get('/branch-map', function (req, res, next) {
-  res.render('branch-map', { title: 'Branch Map' });
-});
+// /* GET Locations Map. Display leaflet with stored data */
+// router.get('/branch-map', ctrlr.branchmapCtrlr);
 
-/* GET Locations Map. Display Mapbox with stored data */
-router.get('/mapbox', function (req, res, next) {
-  res.render('branch-Mapbox', { title: 'Mapbox Map' });
-});
+// /* GET Locations Map. Display Mapbox with stored data */
+// router.get('/mapbox', ctrlr.mapboxCtrlr);
 
-/* GET Locations Map. Display Mapbox with stored data */
-router.get('/google', function (req, res, next) {
-  res.render('googleTest', { title: 'Mapbox Map' });
-});
+// /* GET Locations Map. Display Google Map with hard data */
+// router.get('/google', ctrlr.googlemapCtrlr);
 
-/* GET branch locations data. Source for populating /branch-map */
-router.get('/branch-locations', function (req, res, next) {
-  GeoBranch.find()
-    .sort({ branchNumber: 'ascending' })
-    .select({_id: 0})
-    .exec(function (err, locations) {
-      if (err) {
-        console.log(err);
-      }
-      console.log(`These are our branch-locations ${locations}`);
-      res.json(locations);
-      // res.render('branch-map', { title: 'Our Branches', locations: locations });
-    });
-});
+// /* GET branch locations data. Source for populating /branch-map */
+// router.get('/branch-locations', ctrlr.branchdataCtrlr);
 
-/* GET Locations Map. Demo hardcoded leaflet locations */
-router.get('/leafletLocations', function (req, res, next) {
-  res.render('leafletLocations');
-});
-
-router.get('/gmap', function (req, res, next) {
-  res.render('googleTest');
-});
+// /* GET branches data for tabulation. */
+// router.get('/branches', ctrlr.tabledataCtrlr);
 
 module.exports = router;
 
@@ -169,5 +118,3 @@ router.get('/branch/:number', function (req, res, next) {
   });
 });
 */
-
-
