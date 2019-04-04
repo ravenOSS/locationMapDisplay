@@ -1,42 +1,34 @@
 const express = require('express');
 const router = express.Router();
 
-const ctrlr = require('./controllers');
-console.log(ctrlr.geoprofileCtrlr);
+const ctrlr = require('../controllers/main');
 
 /* GET home page. */
 router.get('/', ctrlr.homepageCtrlr);
 
-// const homepageCtrlr = (req, res) => {
-//   res.render('frontpage', { title: 'Banco del Oro', strapline: 'Please register a branch' });
-// };
+/* GET geoProfiler - enter location data */
+router.get('/geoProfile', ctrlr.geoprofileCtrlr);
 
-// /* GET home page. */
-// router.get('/', homepageCtrlr);
+/* POST location data */
+router.post('/geoProfile', ctrlr.geopostCtrlr);
 
-// /* GET geoProfiler - enter location data */
-// router.get('/geoProfile', ctrlr.geoprofileCtrlr);
+/* GET Locations Map. Display hardcoded leaflet locations */
+router.get('/leafletLocations', ctrlr.leafletmapCtrlr);
 
-// /* POST location data */
-// router.post('/geoProfile', ctrlr.geopostCtrlr);
+/* GET Locations Map. Display leaflet with stored data */
+router.get('/branch-map', ctrlr.branchmapCtrlr);
 
-// /* GET Locations Map. Display hardcoded leaflet locations */
-// router.get('/leafletLocations', ctrlr.leafletmapCtrlr);
+/* GET Locations Map. Display Mapbox with stored data */
+router.get('/mapbox', ctrlr.mapboxCtrlr);
 
-// /* GET Locations Map. Display leaflet with stored data */
-// router.get('/branch-map', ctrlr.branchmapCtrlr);
+/* GET Locations Map. Display Google Map with hard data */
+router.get('/google', ctrlr.googlemapCtrlr);
 
-// /* GET Locations Map. Display Mapbox with stored data */
-// router.get('/mapbox', ctrlr.mapboxCtrlr);
+/* GET branch locations data. Source for populating /branch-map */
+router.get('/branch-locations', ctrlr.branchdataCtrlr);
 
-// /* GET Locations Map. Display Google Map with hard data */
-// router.get('/google', ctrlr.googlemapCtrlr);
-
-// /* GET branch locations data. Source for populating /branch-map */
-// router.get('/branch-locations', ctrlr.branchdataCtrlr);
-
-// /* GET branches data for tabulation. */
-// router.get('/branches', ctrlr.tabledataCtrlr);
+/* GET branches data for tabulation. */
+router.get('/branches', ctrlr.tabledataCtrlr);
 
 module.exports = router;
 

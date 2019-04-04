@@ -72,12 +72,14 @@ const branchdataCtrlr = (req, res) => {
     });
 };
 
-module.exports = { homepageCtrlr };
-module.exports = { geoprofileCtrlr };
-module.exports = { geopostCtrlr };
-module.exports = { tabledataCtrlr };
-module.exports = { leafletmapCtrlr };
-module.exports = { branchmapCtrlr };
-module.exports = { mapboxCtrlr };
-module.exports = { googlemapCtrlr };
-module.exports = { branchdataCtrlr };
+module.exports = {
+  homepageCtrlr,
+  geoprofileCtrlr,
+  geopostCtrlr,
+  tabledataCtrlr,
+  leafletmapCtrlr,
+  branchmapCtrlr,
+  mapboxCtrlr,
+  googlemapCtrlr,
+  branchdataCtrlr
+};
