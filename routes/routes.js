@@ -12,6 +12,12 @@ router.get('/geoProfile', ctrlr.geoprofileCtrlr);
 /* POST location data */
 router.post('/geoProfile', ctrlr.geopostCtrlr);
 
+/* GET branches data for tabulation. */
+router.get('/branches', ctrlr.tabledataCtrlr);
+
+/* GET branch locations data. Source for populating /branch-map */
+router.get('/branch-locations', ctrlr.branchdataCtrlr);
+
 /* GET Locations Map. Display hardcoded leaflet locations */
 router.get('/leafletLocations', ctrlr.leafletmapCtrlr);
 
@@ -23,12 +29,6 @@ router.get('/mapbox', ctrlr.mapboxCtrlr);
 
 /* GET Locations Map. Display Google Map with hard data */
 router.get('/google', ctrlr.googlemapCtrlr);
-
-/* GET branch locations data. Source for populating /branch-map */
-router.get('/branch-locations', ctrlr.branchdataCtrlr);
-
-/* GET branches data for tabulation. */
-router.get('/branches', ctrlr.tabledataCtrlr);
 
 module.exports = router;
 

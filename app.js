@@ -8,7 +8,8 @@ var flash = require('connect-flash');
 var favicon = require('serve-favicon');
 
 var routes = require('./routes/routes');
-require('./database/db');
+var api_routes = require('./api/api_routes/apiRoutes');
+require('./api/database/db');
 
 var app = express();
 
