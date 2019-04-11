@@ -11,3 +11,5 @@ router.get('/branches', apiController.tabledataCtrlr);
 
 /* GET branch locations data. Source for populating /branch-map */
 router.get('/branch-locations', apiController.branchdataCtrlr);
+
+module.exports = router;

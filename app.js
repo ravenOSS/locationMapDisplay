@@ -8,7 +8,7 @@ var flash = require('connect-flash');
 var favicon = require('serve-favicon');
 
 var routes = require('./routes/routes');
-var api_routes = require('./api/api_routes/apiRoutes');
+var routesApi = require('./api/api_routes/apiMain');
 require('./api/database/db');
 
 var app = express();
@@ -24,7 +24,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
-app.use(routes);
+app.use('/', routes);
+app.use('/api', routesApi);
 app.use(flash);
 
 // catch 404 and forward to error handler

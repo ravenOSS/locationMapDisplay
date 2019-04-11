@@ -9,14 +9,8 @@ router.get('/', ctrlr.homepageCtrlr);
 /* GET geoProfiler - enter location data */
 router.get('/geoProfile', ctrlr.geoprofileCtrlr);
 
-/* POST location data */
-router.post('/geoProfile', ctrlr.geopostCtrlr);
-
-/* GET branches data for tabulation. */
-router.get('/branches', ctrlr.tabledataCtrlr);
-
-/* GET branch locations data. Source for populating /branch-map */
-router.get('/branch-locations', ctrlr.branchdataCtrlr);
+/* GET Locations Table */
+router.get('/table', ctrlr.tableCtrlr);
 
 /* GET Locations Map. Display hardcoded leaflet locations */
 router.get('/leafletLocations', ctrlr.leafletmapCtrlr);
@@ -30,7 +24,26 @@ router.get('/mapbox', ctrlr.mapboxCtrlr);
 /* GET Locations Map. Display Google Map with hard data */
 router.get('/google', ctrlr.googlemapCtrlr);
 
+/* This is the api route to get the datatable ajax data */
+router.get('/usertable', function (req, res, next) {
+  User.find()
+    .sort({ createdAt: 'descending' })
+    .exec(function (err, users) {
+      if (err) { return next(err); }
+      res.json(users);
+    });
+});
+
 module.exports = router;
+
+// /* POST location data */
+// router.post('/geoProfile', ctrlr.geopostCtrlr);
+
+// /* GET branches data for tabulation. */
+// router.get('/branches', ctrlr.tabledataCtrlr);
+
+// /* GET branch locations data. Source for populating /branch-map */
+// router.get('/branch-locations', ctrlr.branchdataCtrlr);
 
 // /* render branch profile page. */
 // router.get('/branch-details', function (req, res, next) {
@@ -81,7 +94,7 @@ module.exports = router;
 
 /* GET table data content. */
 /*
-router.get('/datatablebranchs', function (req, res, next) {
+router.get('/datatablebranches', function (req, res, next) {
   Branch.find()
     .sort({ createdAt: 'descending' })
     .exec(function (err, branches) {
@@ -103,7 +116,7 @@ router.get('/datatablebranchs', function (req, res, next) {
 // });
 /*
 router.get('/branch/:number', function (req, res, next) {
-  Branch.findOne({ branch: req.params.braanchNumber }, function (err, branch) {
+  Branch.findOne({ branch: req.params.branchNumber }, function (err, branch) {
     if (err) { return next(err); }
     if (!branch) { return next(404); }
     res.render('profile', { branch: branch });

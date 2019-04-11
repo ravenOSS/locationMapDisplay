@@ -23,6 +23,8 @@ const geopostCtrlr = (req, res, next) => {
   });
   res.redirect('geoProfile');
 };
+
+// Render a basic table
 const tabledataCtrlr = (req, res, next) => {
   GeoBranch.find()
     .sort({ branchNumber: 'ascending' })
@@ -51,7 +53,7 @@ module.exports = {
   // geoprofileCtrlr,
   geopostCtrlr,
   tabledataCtrlr,
-  branchdataCtrlr,
+  branchdataCtrlr
   // leafletmapCtrlr,
   // branchmapCtrlr,
   // mapboxCtrlr,

@@ -1,4 +1,4 @@
-let GeoBranch = require('../models/geoBranch');
+let GeoBranch = require('../api/api_models/geoBranch');
 
 const homepageCtrlr = (req, res) => {
   res.render('frontpage', { title: 'Banco del Oro', strapline: 'Please register a branch' });
@@ -6,6 +6,48 @@ const homepageCtrlr = (req, res) => {
 
 const geoprofileCtrlr = (req, res) => {
   res.render('geoProfile');
+};
+
+// const tableCtrlr = (req, res) => {
+//   res.render('branchesTable', { title: 'Branches Table' });
+// };
+
+const tableCtrlr = (req, res, next) => {
+  GeoBranch.find()
+    .sort({ branchNumber: 'ascending' })
+    .exec(function (err, branches) {
+      if (err) { return next(err); }
+      res.render('branchesTable', { title: 'Our Branches', branches: branches });
+    });
+};
+
+const leafletmapCtrlr = (req, res) => {
+  res.render('leafletLocations', { title: 'Leaflet Map - Raster Graphic Tiles' });
+};
+
+const branchmapCtrlr = (req, res) => {
+  res.render('branch-map', { title: 'Branch Map' });
+};
+
+const mapboxCtrlr = (req, res) => {
+  res.render('branch-Mapbox', { title: 'Mapbox Map - Vector Graphic Tiles' });
+};
+
+const googlemapCtrlr = (req, res) => {
+  res.render('googleTest', { title: 'Google Map' });
+};
+
+module.exports = {
+  homepageCtrlr,
+  geoprofileCtrlr,
+  tableCtrlr,
+  // geopostCtrlr,
+  // tabledataCtrlr,
+  // branchdataCtrlr,
+  leafletmapCtrlr,
+  branchmapCtrlr,
+  mapboxCtrlr,
+  googlemapCtrlr
 };
 
 // const geopostCtrlr = (req, res, next) => {
@@ -42,22 +84,6 @@ const geoprofileCtrlr = (req, res) => {
 //     });
 // };
 
-const leafletmapCtrlr = (req, res) => {
-  res.render('leafletLocations');
-};
-
-const branchmapCtrlr = (req, res) => {
-  res.render('branch-map', { title: 'Branch Map' });
-};
-
-const mapboxCtrlr = (req, res) => {
-  res.render('branch-Mapbox', { title: 'Mapbox Map' });
-};
-
-const googlemapCtrlr = (req, res) => {
-  res.render('googleTest', { title: 'Google Map' });
-};
-
 // const branchdataCtrlr = (req, res) => {
 //   GeoBranch.find()
 //     .sort({ branchNumber: 'ascending' })
@@ -70,15 +96,3 @@ const googlemapCtrlr = (req, res) => {
 //       res.json(locations);
 //     });
 // };
-
-module.exports = {
-  homepageCtrlr,
-  geoprofileCtrlr,
-  // geopostCtrlr,
-  // tabledataCtrlr,
-  // branchdataCtrlr,
-  leafletmapCtrlr,
-  branchmapCtrlr,
-  mapboxCtrlr,
-  googlemapCtrlr
-};
