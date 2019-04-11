@@ -25,14 +25,15 @@ router.get('/mapbox', ctrlr.mapboxCtrlr);
 router.get('/google', ctrlr.googlemapCtrlr);
 
 /* This is the api route to get the datatable ajax data */
-router.get('/usertable', function (req, res, next) {
-  User.find()
-    .sort({ createdAt: 'descending' })
-    .exec(function (err, users) {
-      if (err) { return next(err); }
-      res.json(users);
-    });
-});
+// THIS IS THE MODEL TO GET THE DATATABLE DATA
+// router.get('/usertable', function (req, res, next) {
+//   User.find()
+//     .sort({ createdAt: 'descending' })
+//     .exec(function (err, users) {
+//       if (err) { return next(err); }
+//       res.json(users);
+//     });
+// });
 
 module.exports = router;
 

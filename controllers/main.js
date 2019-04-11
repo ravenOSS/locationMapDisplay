@@ -17,7 +17,7 @@ const tableCtrlr = (req, res, next) => {
     .sort({ branchNumber: 'ascending' })
     .exec(function (err, branches) {
       if (err) { return next(err); }
-      res.render('branchesTable', { title: 'Our Branches', branches: branches });
+      res.render('branchesTable', { title: 'Our Branches - Mongodb data', branches: branches });
     });
 };
 
@@ -26,7 +26,7 @@ const leafletmapCtrlr = (req, res) => {
 };
 
 const branchmapCtrlr = (req, res) => {
-  res.render('branch-map', { title: 'Branch Map' });
+  res.render('branch-map', { title: 'Branch Map - Leaflet / Mongo Data' });
 };
 
 const mapboxCtrlr = (req, res) => {
