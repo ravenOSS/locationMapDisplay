@@ -7,14 +7,14 @@ var logger = require('morgan');
 var flash = require('connect-flash');
 var favicon = require('serve-favicon');
 
-var routes = require('./routes/routes');
-var routesApi = require('./api/api_routes/apiMain');
-require('./api/database/db');
+var routes = require('./app_server/routes/routes');
+var routesApi = require('./app_server/api_routes/apiRoutes');
+require('./app_server/database/db');
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'app_server', 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
