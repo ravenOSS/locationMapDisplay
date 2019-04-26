@@ -12,6 +12,6 @@ Requires a mongodb installation either locally or SAAS platform such as Atlas. S
 Allows registration of 'locations' for creation of a collection of Geo Points. Use the 'Create-Location' link.
 
 Configured to use dotenv. Create .env file in root directory and add key=value data for database URL and PORT.
-Add your own API keys for Mapbox and Google.  
+Register for Mapbox and Google free accounts and add your own API keys.  
 
 Open locate-demo.html directly into browser for a display of the user location using the browser GeoLocation api. Displays user location.
