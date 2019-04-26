@@ -52,7 +52,7 @@
 // Add branch locations to the map
       function addBranches() {
 
-        axios.get('/api/locations')
+        axios.get('/api/location')
           .then(function (locations) {
             locations.data.forEach(function (branch) {
               console.log(branch);

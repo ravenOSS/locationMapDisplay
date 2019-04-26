@@ -9,7 +9,7 @@ router.post('/geoProfile', apiController.geopostCtrlr);
 /* GET location data for tabulation. */
 router.get('/location', apiController.dataTableCtrlr);
 
-/* GET location locations data. Source for populating /location-map */
+/* GET locations data. Source for populating /location-map */
 router.get('/locations', apiController.locationsDataCtrlr);
 
 module.exports = router;

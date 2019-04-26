@@ -22,7 +22,7 @@ const BSTableCtrlr = (req, res, next) => {
 };
 
 const branchmapCtrlr = (req, res) => {
-  res.render('locations-map', { title: 'Locations Map - Leaflet / Mongo Data' });
+  res.render('locations-map', { title: 'Leaflet Map - Raster Graphics / Mongo Data' });
 };
 
 const mapboxCtrlr = (req, res) => {
